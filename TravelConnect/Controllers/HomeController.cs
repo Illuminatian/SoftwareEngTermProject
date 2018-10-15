@@ -12,7 +12,7 @@ namespace TravelConnect.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Trip");
         }
 
         public IActionResult About()

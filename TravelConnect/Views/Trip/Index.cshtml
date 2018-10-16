@@ -1,0 +1,70 @@
+﻿@model IEnumerable<TravelConnect.Models.TripModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TripStartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DepartureCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DestinationCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TripLength)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxTravellers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TravelMode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cost)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDate, "{0:MM/dd/yyyy}")
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TripStartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DepartureCity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DestinationCity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TripLength)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxTravellers)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TravelMode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cost)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

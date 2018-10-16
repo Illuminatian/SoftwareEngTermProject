@@ -1,0 +1,73 @@
+﻿@model TravelConnect.Models.TripModel
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TripModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateUserId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreateUserId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TripStartDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TripStartDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DepartureCity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DepartureCity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DestinationCity)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DestinationCity)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TripLength)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TripLength)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MaxTravellers)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaxTravellers)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TravelMode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TravelMode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cost)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cost)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

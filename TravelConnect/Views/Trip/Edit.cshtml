@@ -1,5 +1,5 @@
 ﻿@model TravelConnect.Models.TripModel
-
+@using TravelConnect.Enums
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -14,6 +14,8 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="CreateUserId" />
+            <input type="hidden" asp-for="CreateDate" />
             <div class="form-group">
                 <label asp-for="TripStartDate" class="control-label"></label>
                 <input asp-for="TripStartDate" class="form-control" />
@@ -41,7 +43,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="TravelMode" class="control-label"></label>
-                <select asp-for="TravelMode" class="form-control"></select>
+                <select asp-for="TravelMode" asp-items="Html.GetEnumSelectList<TravelMode.Mode>()" class="form-control"></select>
                 <span asp-validation-for="TravelMode" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -49,9 +51,11 @@
                 <input asp-for="Cost" class="form-control" />
                 <span asp-validation-for="Cost" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
+
         </form>
     </div>
 </div>
@@ -59,6 +63,8 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

@@ -98,7 +98,7 @@ namespace TravelConnect.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,TripStartDate,DepartureCity,DestinationCity,TripLength,MaxTravellers,TravelMode,Cost")] TripModel tripModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CreateUserId,CreateDate,TripStartDate,DepartureCity,DestinationCity,TripLength,MaxTravellers,TravelMode,Cost")] TripModel tripModel)
         {
             if (id != tripModel.Id)
             {

@@ -17,7 +17,6 @@ namespace TravelConnect.Models
         public string CreateUserId { get; set; }
         public DateTime CreateDate { get; set; }
         [Display(Name ="Leaving On:")]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime TripStartDate { get; set; }
         [Display(Name ="Departing From:")]
         public string DepartureCity { get; set; }

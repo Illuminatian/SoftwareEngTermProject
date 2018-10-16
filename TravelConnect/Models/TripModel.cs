@@ -32,5 +32,7 @@ namespace TravelConnect.Models
         public TravelMode.Mode TravelMode { get; set; }
         [Display(Name ="Trip Cost:")]
         public decimal Cost { get; set; }
+        [Display(Name = "Trip Description:")]
+        public string TripDescription { get; set; }
     }
 }

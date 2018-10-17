@@ -12,7 +12,9 @@ namespace TravelConnect.Enums
         {
             Airplane,
             Train,
-            Car
+            Car,
+            Bus,
+            Boat
         }
     }
 }

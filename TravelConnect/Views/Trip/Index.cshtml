@@ -111,19 +111,40 @@
     <div class="cards">
         @foreach (var item in Model)
         {
-            <div class="card">
-                <img src="" alt="Trip Image" class="trip_image">
-                <div class="container">
-                    <h4>
-                        <b>
-                            @Html.DisplayFor(modelItem => item.DestinationCity)
-                        </b>
-                    </h4>
-                    <p>
-                        @Html.DisplayFor(modelItem => item.TripStartDate)
-                    </p>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a href="Trip/Details/@item.Id">
+
+                    <div class="card">
+                        <img src="" alt="Trip Image" class="trip_image">
+                        <div class="container">
+                            <h4>
+                                <b>
+                                    @Html.DisplayFor(modelItem => item.DestinationCity)
+                                </b>
+                            </h4>
+                            <p>
+                                @Html.DisplayFor(modelItem => item.TripStartDate)
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            }
+            else {
+                <div class="card">
+                    <img src="" alt="Trip Image" class="trip_image">
+                    <div class="container">
+                        <h4>
+                            <b>
+                                @Html.DisplayFor(modelItem => item.DestinationCity)
+                            </b>
+                        </h4>
+                        <p>
+                            @Html.DisplayFor(modelItem => item.TripStartDate)
+                        </p>
+                    </div>
                 </div>
-            </div>
+            }
         }
     </div>
 </body>

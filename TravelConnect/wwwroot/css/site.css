@@ -35,3 +35,36 @@ body {
         display: none;
     }
 }
+
+/* styling for trip container on main page */
+.left {
+    float: left;
+    background: #808080;
+    width: 25%;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #ffffff;
+}
+
+    .flex-container > div {
+        background-color: #f1f1f1;
+        width: 200px;
+        margin: 10px;
+        text-align: center;
+        font-size: 20px;
+        padding-bottom: 10px;
+    }
+
+.right {
+    float: right;
+    width: 75%;
+}
+
+.right::after {
+    content: "";
+    clear: both;
+    display: table;
+}

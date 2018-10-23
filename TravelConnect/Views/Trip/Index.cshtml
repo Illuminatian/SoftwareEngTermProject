@@ -1,78 +1,99 @@
 ﻿@model IEnumerable<TravelConnect.Models.TripModel>
 
 @{
-  ViewData["Title"] = "Index";
-  Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="body-content">
+    <div class="left">
+        <h2>Partial view </br>
+        "SEARCH" here</h2>
+        <h3>ASDFASDF</h3>
+    </div>
+    <div class="right">
+        <h2>Index</h2>
 
-<h2>Index</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreateDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TripStartDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DepartureCity)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DestinationCity)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TripLength)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MaxTravellers)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TravelMode)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Cost)
+                    </th>
+                    <th>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreateDate, "{0:MM/dd/yyyy}")
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TripStartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DepartureCity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DestinationCity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TripLength)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaxTravellers)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TravelMode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cost)
+                        </td>
+                        <td>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <h2>Trips</h2>
+        <div class="flex-container">
+            @foreach (var item in Model)
+            {<div>
+    <h2>Picture!</h2>
+    @Html.DisplayFor(modelItem => item.DestinationCity)<br />
+    @Html.DisplayFor(modelItem => item.TripLength) Days<br />
+    @Html.DisplayFor(modelItem => item.TravelMode)<br />
+    @Html.DisplayFor(modelItem => item.Cost)
+</div>
+            }
+        </div>
+    </div>
+</div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>
-        @Html.DisplayNameFor(model => model.CreateDate)
-      </th>
-      <th>
-        @Html.DisplayNameFor(model => model.TripStartDate)
-      </th>
-      <th>
-        @Html.DisplayNameFor(model => model.DepartureCity)
-      </th>
-      <th>
-        @Html.DisplayNameFor(model => model.DestinationCity)
-      </th>
-      <th>
-        @Html.DisplayNameFor(model => model.TripLength)
-      </th>
-      <th>
-        @Html.DisplayNameFor(model => model.MaxTravellers)
-      </th>
-      <th>
-        @Html.DisplayNameFor(model => model.TravelMode)
-      </th>
-      <th>
-        @Html.DisplayNameFor(model => model.Cost)
-      </th>
-      <th>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach (var item in Model)
-    {
-      <tr>
-        <td>
-          @Html.DisplayFor(modelItem => item.CreateDate, "{0:MM/dd/yyyy}")
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.TripStartDate)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.DepartureCity)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.DestinationCity)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.TripLength)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.MaxTravellers)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.TravelMode)
-        </td>
-        <td>
-          @Html.DisplayFor(modelItem => item.Cost)
-        </td>
-        <td>
-          @if (User.Identity.IsAuthenticated)
-          {
-            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
-          }
-        </td>
-      </tr>
-    }
-  </tbody>
-</table>

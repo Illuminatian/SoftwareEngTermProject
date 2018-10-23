@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<TravelConnect.Models.TripModel>
 @using TravelConnect.Enums
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Explore";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <h2>Index</h2>
@@ -89,6 +89,7 @@
             margin-right: 5px;
             margin-top: 10px;
             float: left;
+            color: forestgreen;
         }
 
             .card:hover {
@@ -107,28 +108,37 @@
             width: 250px;
             height: 150px;
         }
+
     </style>
 </head>
 <body>
     <div class="cards">
         @foreach (var item in Model)
         {
-            @if (User.Identity.IsAuthenticated)
+            <script>
+                var link = "javascript:void(0)";
+            </script>
+            @if (User.Identity.IsAuthenticated) 
             {
-                <a href="Trip/Details/@item.Id">
+                <script>
+                    link = "Trip/Details/@item.Id";
+                </script>
+            }
 
-                    <div class="card">
-                        <img src="" alt="Trip Image" class="trip_image">
-                        <div class="container">
-                            <h4>
-                                <b>
-                                    @Html.DisplayFor(modelItem => item.DestinationCity)
-                                </b>
-                            </h4>
-                            <p>
-                                @Html.DisplayFor(modelItem => item.TripStartDate)
-                            </p>
+            <a href="" onclick="location.href=link;return false;">
 
+                <div class="card">
+                    <img src="" alt="Trip Image" class="trip_image">
+                    <div class="container">
+                        <h4>
+                            <b>
+                                @Html.DisplayFor(modelItem => item.DestinationCity)
+                            </b>
+                        </h4>
+                        <p>
+                            @Html.DisplayFor(modelItem => item.TripStartDate)
+                        </p>
+                        <div class="icons">
                             <i class="fa fa-dollar"></i>
                             @if (item.Cost > 500)
                             {
@@ -160,55 +170,11 @@
                             }
                         </div>
                     </div>
-                </a>
-            }
-            else
-            {
-                <div class="card">
-                    <img src="" alt="Trip Image" class="trip_image">
-                    <div class="container">
-                        <h4>
-                            <b>
-                                @Html.DisplayFor(modelItem => item.DestinationCity)
-                            </b>
-                        </h4>
-                        <p>
-                            @Html.DisplayFor(modelItem => item.TripStartDate)
-                        </p>
-
-                        <i class="fa fa-dollar"></i>
-                        @if (item.Cost > 500)
-                        {
-                            <i class="fa fa-dollar"></i>
-                        }
-                        @if (item.Cost > 1500)
-                        {
-                            <i class="fa fa-dollar"></i>
-                        }
-
-                        @switch (item.TravelMode)
-                        {
-                            case TravelMode.Mode.Car:
-                                <i class="fa fa-car"></i>
-                                break;
-
-                            case TravelMode.Mode.Airplane:
-                                <i class="fa fa-plane"></i>
-                                break;
-                            case TravelMode.Mode.Bus:
-                                <i class="fa fa-bus"></i>
-                                break;
-                            case TravelMode.Mode.Train:
-                                <i class="fa fa-train"></i>
-                                break;
-                            case TravelMode.Mode.Boat:
-                                <i class="fa fa-ship"></i>
-                                break;
-                        }
-                    </div>
                 </div>
-            }
+            </a>
+        
         }
     </div>
+    <br />
 </body>
 

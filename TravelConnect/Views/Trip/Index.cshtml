@@ -175,6 +175,17 @@
                         <p>
                             @Html.DisplayFor(modelItem => item.TripStartDate)
                         </p>
+
+                        <i class="fa fa-dollar"></i>
+                        @if (item.Cost > 500)
+                        {
+                            <i class="fa fa-dollar"></i>
+                        }
+                        @if (item.Cost > 1500)
+                        {
+                            <i class="fa fa-dollar"></i>
+                        }
+
                         @switch (item.TravelMode)
                         {
                             case TravelMode.Mode.Car:

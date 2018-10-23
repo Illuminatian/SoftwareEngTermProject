@@ -4,13 +4,6 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="body-content">
-    <div class="left">
-        <h2>Partial view </br>
-        "SEARCH" here</h2>
-        <h3>ASDFASDF</h3>
-    </div>
-    <div class="right">
         <h2>Index</h2>
 
         <table class="table">
@@ -82,18 +75,53 @@
                 }
             </tbody>
         </table>
-        <h2>Trips</h2>
-        <div class="flex-container">
-            @foreach (var item in Model)
-            {<div>
-    <h2>Picture!</h2>
-    @Html.DisplayFor(modelItem => item.DestinationCity)<br />
-    @Html.DisplayFor(modelItem => item.TripLength) Days<br />
-    @Html.DisplayFor(modelItem => item.TravelMode)<br />
-    @Html.DisplayFor(modelItem => item.Cost)
-</div>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 250px;
+            display: inline-block;
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-top: 10px;
+            float: left;
+        }
+
+            .card:hover {
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
             }
-        </div>
+
+        .container {
+            padding: 2px 16px;
+        }
+
+        .trip_image {
+            width: 250px;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="cards">
+        @foreach (var item in Model)
+        {
+            <div class="card">
+                <img src="" alt="Trip Image" class="trip_image">
+                <div class="container">
+                    <h4>
+                        <b>
+                            @Html.DisplayFor(modelItem => item.DestinationCity)
+                        </b>
+                    </h4>
+                    <p>
+                        @Html.DisplayFor(modelItem => item.TripStartDate)
+                    </p>
+                </div>
+            </div>
+        }
     </div>
-</div>
+</body>
 

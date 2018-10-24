@@ -4,6 +4,12 @@
     ViewData["Title"] = "Explore";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<script type="text/javascript">
+    function GoTo(id) {
+        $.ajax
+    }
+</script>
 <h2>Index</h2>
 
 <table class="table">
@@ -108,71 +114,111 @@
             width: 250px;
             height: 150px;
         }
-
     </style>
 </head>
 <body>
     <div class="cards">
+
+
         @foreach (var item in Model)
         {
-            <script>
-                var link = "javascript:void(0)";
-            </script>
-            @if (User.Identity.IsAuthenticated) 
+
+            if (User.Identity.IsAuthenticated)
             {
-                <script>
-                    link = "Trip/Details/@item.Id";
-                </script>
-            }
-
-            <a href="" onclick="location.href=link;return false;">
-
-                <div class="card">
-                    <img src="" alt="Trip Image" class="trip_image">
-                    <div class="container">
-                        <h4>
-                            <b>
-                                @Html.DisplayFor(modelItem => item.DestinationCity)
-                            </b>
-                        </h4>
-                        <p>
-                            @Html.DisplayFor(modelItem => item.TripStartDate)
-                        </p>
-                        <div class="icons">
-                            <i class="fa fa-dollar"></i>
-                            @if (item.Cost > 500)
-                            {
+                <a href="/Trip/Details/@item.Id">
+                    <div class="card">
+                        <img src="" alt="Trip Image" class="trip_image">
+                        <div class="container">
+                            <h4>
+                                <b>
+                                    @Html.DisplayFor(modelItem => item.DestinationCity)
+                                </b>
+                            </h4>
+                            <p>
+                                @Html.DisplayFor(modelItem => item.TripStartDate)
+                            </p>
+                            <div class="icons">
                                 <i class="fa fa-dollar"></i>
-                            }
-                            @if (item.Cost > 1500)
-                            {
-                                <i class="fa fa-dollar"></i>
-                            }
+                                @if (item.Cost > 500)
+                                {
+                                    <i class="fa fa-dollar"></i>
+                                }
+                                @if (item.Cost > 1500)
+                                {
+                                    <i class="fa fa-dollar"></i>
+                                }
 
-                            @switch (item.TravelMode)
-                            {
-                                case TravelMode.Mode.Car:
-                                    <i class="fa fa-car"></i>
-                                    break;
-
-                                case TravelMode.Mode.Airplane:
-                                    <i class="fa fa-plane"></i>
-                                    break;
-                                case TravelMode.Mode.Bus:
-                                    <i class="fa fa-bus"></i>
-                                    break;
-                                case TravelMode.Mode.Train:
-                                    <i class="fa fa-train"></i>
-                                    break;
-                                case TravelMode.Mode.Boat:
-                                    <i class="fa fa-ship"></i>
-                                    break;
-                            }
+                                @switch (item.TravelMode)
+                                {
+                                    case TravelMode.Mode.Car:
+                                        <i class="fa fa-car"></i>
+                                        break;
+                                    case TravelMode.Mode.Airplane:
+                                        <i class="fa fa-plane"></i>
+                                        break;
+                                    case TravelMode.Mode.Bus:
+                                        <i class="fa fa-bus"></i>
+                                        break;
+                                    case TravelMode.Mode.Train:
+                                        <i class="fa fa-train"></i>
+                                        break;
+                                    case TravelMode.Mode.Boat:
+                                        <i class="fa fa-ship"></i>
+                                        break;
+                                }
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-        
+                </a>
+            }
+            else
+            {
+                <a href="/Trip/Details/@item.Id">
+                    <div class="card">
+                        <img src="" alt="Trip Image" class="trip_image">
+                        <div class="container">
+                            <h4>
+                                <b>
+                                    @Html.DisplayFor(modelItem => item.DestinationCity)
+                                </b>
+                            </h4>
+                            <p>
+                                @Html.DisplayFor(modelItem => item.TripStartDate)
+                            </p>
+                            <div class="icons">
+                                <i class="fa fa-dollar"></i>
+                                @if (item.Cost > 500)
+                                {
+                                    <i class="fa fa-dollar"></i>
+                                }
+                                @if (item.Cost > 1500)
+                                {
+                                    <i class="fa fa-dollar"></i>
+                                }
+
+                                @switch (item.TravelMode)
+                                {
+                                    case TravelMode.Mode.Car:
+                                        <i class="fa fa-car"></i>
+                                        break;
+                                    case TravelMode.Mode.Airplane:
+                                        <i class="fa fa-plane"></i>
+                                        break;
+                                    case TravelMode.Mode.Bus:
+                                        <i class="fa fa-bus"></i>
+                                        break;
+                                    case TravelMode.Mode.Train:
+                                        <i class="fa fa-train"></i>
+                                        break;
+                                    case TravelMode.Mode.Boat:
+                                        <i class="fa fa-ship"></i>
+                                        break;
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            }
         }
     </div>
     <br />

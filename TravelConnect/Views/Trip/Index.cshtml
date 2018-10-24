@@ -138,17 +138,28 @@
                         <p>
                             @Html.DisplayFor(modelItem => item.TripStartDate)
                         </p>
-                        <div class="icons">
-                            <i class="fa fa-dollar"></i>
-                            @if (item.Cost > 500)
-                            {
+                        @if (item.Cost < 500)
+                        {
+                            <div class="dollar1">
                                 <i class="fa fa-dollar"></i>
-                            }
-                            @if (item.Cost > 1500)
-                            {
+                            </div>
+                        }
+                        else if (item.Cost > 500 && item.Cost < 1500)
+                        {
+                            <div class="dollar2">
                                 <i class="fa fa-dollar"></i>
-                            }
-
+                                <i class="fa fa-dollar"></i>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="dollar3">
+                                <i class="fa fa-dollar"></i>
+                                <i class="fa fa-dollar"></i>
+                                <i class="fa fa-dollar"></i>
+                            </div>
+                        }
+                        <div class="mode_icon">
                             @switch (item.TravelMode)
                             {
                                 case TravelMode.Mode.Car:
@@ -171,10 +182,8 @@
                         </div>
                     </div>
                 </div>
-            </a>
-        
+            </a>       
         }
     </div>
-    <br />
 </body>
 

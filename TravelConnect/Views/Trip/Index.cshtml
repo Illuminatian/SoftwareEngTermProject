@@ -93,7 +93,7 @@
             {
                 <a href="/Trip/Details/@item.Id">
                     <div class="card">
-                        <img src="" alt="Trip Image" class="trip_image">
+                        <img src="~/images/back.jpg" alt="Trip Image" class="trip_image">
                         <div class="container">
                             <h4>
                                 <b>
@@ -124,29 +124,37 @@
                                 <i class="fa fa-dollar"></i>
                             </div>
                         }
-                        <div class="mode_icon">
-                            @switch (item.TravelMode)
-                            {
-                                case TravelMode.Mode.Car:
-                                    <i class="fa fa-car"></i>
-                                    break;
+                            <div class="mode_icon">
+                                @switch (item.TravelMode)
+                                {
+                                    case TravelMode.Mode.Car:
+                                        <div class="container_icon_car">
+                                            <div class="icon">
+                                                <i class="fa fa-car"></i>
+                                            </div>
+                                        </div>
+                                        break;
 
-                                case TravelMode.Mode.Airplane:
-                                    <i class="fa fa-plane"></i>
-                                    break;
-                                case TravelMode.Mode.Bus:
-                                    <i class="fa fa-bus"></i>
-                                    break;
-                                case TravelMode.Mode.Train:
-                                    <i class="fa fa-train"></i>
-                                    break;
-                                case TravelMode.Mode.Boat:
-                                    <i class="fa fa-ship"></i>
-                                    break;
-                            }
-                            </div>
-                        </div>
-                    </div>
+                                    case TravelMode.Mode.Airplane:
+                                        <div class="container_icon_plane">
+                                            <div class="icon">
+                                                <i class="fa fa-plane"></i>
+                                            </div>
+                                        </div>
+                                                break;
+                                                case TravelMode.Mode.Bus:
+                                                <i class="fa fa-bus"></i>
+                                                break;
+                                                case TravelMode.Mode.Train:
+                                                <i class="fa fa-train"></i>
+                                                break;
+                                                case TravelMode.Mode.Boat:
+                                                <i class="fa fa-ship"></i>
+                                                break;
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
                 </a>
             }
             else

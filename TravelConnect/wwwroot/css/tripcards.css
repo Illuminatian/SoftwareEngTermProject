@@ -84,13 +84,23 @@
 .dollar1 {
     padding: 2px 16px;
     position: relative;
-    left: -20px;
-    bottom: 45px;
-    font-size: 28px;
+    left: 230px;
+    bottom: 50px;
+    font-size: 26px;
 }
 
 .dollar2 {
+    padding: 2px 16px;
+    position: relative;
+    left: 230px;
+    bottom: 50px;
+    font-size: 26px;
 }
 
 .dollar3 {
+    padding: 2px 16px;
+    position: relative;
+    left: 230px;
+    bottom: 50px;
+    font-size: 26px;
 }

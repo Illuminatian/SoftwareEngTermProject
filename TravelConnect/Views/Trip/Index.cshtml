@@ -88,7 +88,7 @@
     <div class="cards">
         @foreach (var item in Model)
         {
-
+            //User is logged in
             if (User.Identity.IsAuthenticated)
             {
                 <a href="/Trip/Details/@item.Id">
@@ -109,7 +109,7 @@
                                 <i class="fa fa-dollar"></i>
                             </div>
                         }
-                        else if (item.Cost > 500 && item.Cost < 1500)
+                        else if (item.Cost >= 500 && item.Cost < 1500)
                         {
                             <div class="dollar2">
                                 <i class="fa fa-dollar"></i>
@@ -169,6 +169,7 @@
                                     </div>
                 </a>
             }
+            //User is logged out
             else
             {
                 <a href="javascript:void(0)">
@@ -191,7 +192,7 @@
                                     </div>
                                 </div>
                                 }
-                                else if (item.Cost > 500 && item.Cost < 1500)
+                                else if (item.Cost >= 500 && item.Cost < 1500)
                                 {
                                 <div class="dollar2">
                                     <i class="fa fa-dollar"></i>

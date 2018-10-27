@@ -45,7 +45,7 @@
     padding: 2px 16px;
     position: relative;
     left: 20px;
-    top: 0px;
+    bottom: 55px;
 }
 
 .container_icon_plane {
@@ -59,8 +59,8 @@
 .container_icon_bus {
     padding: 2px 16px;
     position: relative;
-    left: 134px;
-    top: 67px;
+    left: 20px;
+    bottom: 55px;
     font-size: 18px;
 }
 

@@ -45,26 +45,48 @@
     padding: 2px 16px;
     position: relative;
     left: 20px;
-    bottom: 55px;
+    bottom: 65px;
+    font-size: 28px;
 }
 
 .container_icon_plane {
     padding: 2px 16px;
     position: relative;
     left: 20px;
-    bottom: 55px;
-    font-size: 35px;
+    bottom: 60px;
+    font-size: 30px;
 }
 
 .container_icon_bus {
     padding: 2px 16px;
     position: relative;
     left: 20px;
-    bottom: 55px;
-    font-size: 18px;
+    bottom: 65px;
+    font-size: 28px;
+}
+
+.container_icon_train {
+    padding: 2px 16px;
+    position: relative;
+    left: 20px;
+    bottom: 65px;
+    font-size: 27px;
+}
+
+.container_icon_ship {
+    padding: 2px 16px;
+    position: relative;
+    left: 20px;
+    bottom: 90px;
+    font-size: 28px;
 }
 
 .dollar1 {
+    padding: 2px 16px;
+    position: relative;
+    left: -20px;
+    bottom: 45px;
+    font-size: 28px;
 }
 
 .dollar2 {

@@ -104,26 +104,32 @@
                                 @Html.DisplayFor(modelItem => item.TripStartDate)
                             </p>
                             @if (item.Cost < 500)
-                        {
-                            <div class="dollar1">
-                                <i class="fa fa-dollar"></i>
-                            </div>
-                        }
-                        else if (item.Cost >= 500 && item.Cost < 1500)
-                        {
-                            <div class="dollar2">
-                                <i class="fa fa-dollar"></i>
-                                <i class="fa fa-dollar"></i>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="dollar3">
-                                <i class="fa fa-dollar"></i>
-                                <i class="fa fa-dollar"></i>
-                                <i class="fa fa-dollar"></i>
-                            </div>
-                        }
+                            {
+                                <div class="dollar1">
+                                    <div class="icon">
+                                        <i class="fa fa-dollar"></i>
+                                    </div>
+                                </div>
+                            }
+                            else if (item.Cost >= 500 && item.Cost < 1500)
+                            {
+                                <div class="dollar2">
+                                    <div class="icon">
+                                        <i class="fa fa-dollar"></i>
+                                        <i class="fa fa-dollar"></i>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="dollar3">
+                                    <div class="icon">
+                                        <i class="fa fa-dollar"></i>
+                                        <i class="fa fa-dollar"></i>
+                                        <i class="fa fa-dollar"></i>
+                                    </div>
+                                </div>
+                            }
                             <div class="mode_icon">
                                 @switch (item.TravelMode)
                                 {
@@ -165,8 +171,8 @@
                                         break;
                                 }
                             </div>
-                                        </div>
-                                    </div>
+                        </div>
+                    </div>
                 </a>
             }
             //User is logged out
@@ -194,17 +200,21 @@
                                 }
                                 else if (item.Cost >= 500 && item.Cost < 1500)
                                 {
-                                <div class="dollar2">
+                            <div class="dollar2">
+                                <div class="icon">
                                     <i class="fa fa-dollar"></i>
                                     <i class="fa fa-dollar"></i>
+                                    </div>
                                 </div>
                                 }
                                 else
                                 {
-                                <div class="dollar3">
+                            <div class="dollar3">
+                                <div class="icon">
                                     <i class="fa fa-dollar"></i>
                                     <i class="fa fa-dollar"></i>
                                     <i class="fa fa-dollar"></i>
+                                    </div>
                                 </div>
                                 }
                                 <div class="mode_icon">

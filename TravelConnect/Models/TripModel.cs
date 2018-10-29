@@ -22,6 +22,8 @@ namespace TravelConnect.Models
         public string DepartureCity { get; set; }
         [Display(Name ="Travelling To:")]
         public string DestinationCity { get; set; }
+        [Display(Name = "Returning On:")]
+        public DateTime TripEndDate { get; set; }
         [Display(Name ="Trip Length (Nights):")]
         public int TripLength { get; set; }
         [NotMapped]

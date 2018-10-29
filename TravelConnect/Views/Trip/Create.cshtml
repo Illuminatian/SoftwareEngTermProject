@@ -2,8 +2,8 @@
 @using TravelConnect.Enums
 
 @{
-    ViewData["Title"] = "Create a Trip";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+  ViewData["Title"] = "Create a Trip";
+  Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Create</h2>
@@ -11,61 +11,65 @@
 <h4>TripModel</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
-      <form asp-action="Create">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-          <label asp-for="TripStartDate" class="control-label"></label>
-          <input asp-for="TripStartDate" class="form-control" />
-          <span asp-validation-for="TripStartDate" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <label asp-for="DepartureCity" class="control-label"></label>
-          <input asp-for="DepartureCity" class="form-control" />
-          <span asp-validation-for="DepartureCity" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <label asp-for="DestinationCity" class="control-label"></label>
-          <input asp-for="DestinationCity" class="form-control" />
-          <span asp-validation-for="DestinationCity" class="text-danger"></span>
-        </div>
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group">
-          <label asp-for="TripEndDate" class="control-label"></label>
-          <input asp-for="TripEndDate" class="form-control" />
-          <span asp-validation-for="TripEndDate" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <label asp-for="MaxTravellers" class="control-label"></label>
-          <input asp-for="MaxTravellers" class="form-control" />
-          <span asp-validation-for="MaxTravellers" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <label asp-for="TravelMode" class="control-label"></label>
-          <select asp-for="TravelMode" asp-items="Html.GetEnumSelectList<TravelMode.Mode>()" class="form-control"></select>
-          <span asp-validation-for="TravelMode" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <label asp-for="Cost" class="control-label"></label>
-          <input asp-for="Cost" class="form-control" />
-          <span asp-validation-for="Cost" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <label asp-for="TripDescription" class="control-label"></label>
-          <textarea asp-for="TripDescription" class="form-control" rows="5" cols="40"></textarea>
-          <span asp-validation-for="TripDescription" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-          <input type="submit" value="Create" class="btn btn-default" />
-        </div>
-      </form>
-    </div>
+  <div class="col-md-4">
+    <form asp-action="Create" enctype="multipart/form-data">
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      <div class="form-group">
+        <label asp-for="TripStartDate" class="control-label"></label>
+        <input asp-for="TripStartDate" class="form-control" />
+        <span asp-validation-for="TripStartDate" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="DepartureCity" class="control-label"></label>
+        <input asp-for="DepartureCity" class="form-control" />
+        <span asp-validation-for="DepartureCity" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="DestinationCity" class="control-label"></label>
+        <input asp-for="DestinationCity" class="form-control" />
+        <span asp-validation-for="DestinationCity" class="text-danger"></span>
+      </div>
+      <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+      <div class="form-group">
+        <label asp-for="TripEndDate" class="control-label"></label>
+        <input asp-for="TripEndDate" class="form-control" />
+        <span asp-validation-for="TripEndDate" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="MaxTravellers" class="control-label"></label>
+        <input asp-for="MaxTravellers" class="form-control" />
+        <span asp-validation-for="MaxTravellers" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="TravelMode" class="control-label"></label>
+        <select asp-for="TravelMode" asp-items="Html.GetEnumSelectList<TravelMode.Mode>()" class="form-control"></select>
+        <span asp-validation-for="TravelMode" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="Cost" class="control-label"></label>
+        <input asp-for="Cost" class="form-control" />
+        <span asp-validation-for="Cost" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="TripDescription" class="control-label"></label>
+        <textarea asp-for="TripDescription" class="form-control" rows="5" cols="40"></textarea>
+        <span asp-validation-for="TripDescription" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="FileToUpload" class="control-label"></label>
+        <input asp-for="FileToUpload" type="file" />
+      </div>
+      <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-default" />
+      </div>
+    </form>
+  </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+  <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

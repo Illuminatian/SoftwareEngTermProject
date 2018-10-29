@@ -11,7 +11,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-      <form asp-action="Edit">
+      <form asp-action="Edit" enctype="multipart/form-data">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="Id" />
         <input type="hidden" asp-for="CreateUserId" />
@@ -53,10 +53,13 @@
         </div>
         <div class="form-group">
           <label asp-for="TripDescription" class="control-label"></label>
-          <textarea asp-for="TripDescription" rows="5" cols="40" class="form-control" ></textarea>
+          <textarea asp-for="TripDescription" rows="5" cols="40" class="form-control"></textarea>
           <span asp-validation-for="TripDescription" class="text-danger"></span>
         </div>
-
+        <div class="form-group">
+          <label asp-for="FileToUpload" class="control-label"></label>
+          <input asp-for="FileToUpload" type="file" />
+        </div>
         <div class="form-group">
           <input type="submit" value="Save" class="btn btn-default" />
         </div>

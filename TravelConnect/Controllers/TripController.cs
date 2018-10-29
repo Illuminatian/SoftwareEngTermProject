@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -16,14 +19,40 @@ namespace TravelConnect.Controllers
     public class TripController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IHostingEnvironment hostingEnvironment;
 
-        public TripController(ApplicationDbContext context)
+        public TripController(ApplicationDbContext context, IHostingEnvironment environment)
         {
             _context = context;
+            hostingEnvironment = environment;
         }
 
-        // GET: Trip
-        public async Task<IActionResult> Index()
+        [HttpPost]
+        public string UploadFiles(IFormFile file)
+        {
+            long size = file.Length;
+
+            // full path to file in temp location
+            var filePath = Path.GetTempFileName();
+
+            var uploads = Path.Combine(hostingEnvironment.WebRootPath, "images");
+            var savedFileName = GetUniqueFileName(file.FileName);
+            var fullPath = Path.Combine(uploads, savedFileName);
+            file.CopyTo(new FileStream(fullPath, FileMode.Create));
+
+            return savedFileName;
+        }
+        private string GetUniqueFileName(string fileName)
+        {
+            fileName = Path.GetFileName(fileName);
+            return Path.GetFileNameWithoutExtension(fileName)
+                      + "_"
+                      + Guid.NewGuid().ToString().Substring(0, 4)
+                      + Path.GetExtension(fileName);
+        }
+
+    // GET: Trip
+    public async Task<IActionResult> Index()
         {
             return View(await _context.TripModel.ToListAsync());
         }
@@ -62,10 +91,16 @@ namespace TravelConnect.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,TripStartDate,DepartureCity,DestinationCity,TripLength,MaxTravellers,TravelMode,Cost,TripDescription")] TripModel tripModel)
+        public async Task<IActionResult> Create([FromForm][Bind("Id,TripStartDate,DepartureCity,DestinationCity,TripEndDate,MaxTravellers,TravelMode,Cost,TripDescription,FileToUpload")] TripModel tripModel)
         {
             if (ModelState.IsValid)
             {
+                if (tripModel.FileToUpload != null)
+                {
+                    string fileName = UploadFiles(tripModel.FileToUpload);
+                    tripModel.CustomPicturePath = fileName;
+                }
+
                 tripModel.CreateDate = DateTime.Now;
                 tripModel.CreateUserId = UserHelper.GetUserId(User);
                 _context.Add(tripModel);
@@ -98,7 +133,7 @@ namespace TravelConnect.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CreateUserId,CreateDate,TripStartDate,DepartureCity,DestinationCity,TripLength,MaxTravellers,TravelMode,Cost,TripDescription")] TripModel tripModel)
+        public async Task<IActionResult> Edit(int id, [FromForm][Bind("Id,CreateUserId,CreateDate,TripStartDate,DepartureCity,DestinationCity,TripEndDate,MaxTravellers,TravelMode,Cost,TripDescription,FileToUpload")] TripModel tripModel)
         {
             if (id != tripModel.Id)
             {
@@ -109,6 +144,12 @@ namespace TravelConnect.Controllers
             {
                 try
                 {
+                    if(tripModel.FileToUpload != null)
+                    {
+                        string fileName = UploadFiles(tripModel.FileToUpload);
+                        tripModel.CustomPicturePath = fileName;
+                    }
+                    
                     _context.Update(tripModel);
                     await _context.SaveChangesAsync();
                 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -27,7 +28,7 @@ namespace TravelConnect.Models
         [Display(Name ="Trip Length (Nights):")]
         public int TripLength { get; set; }
         [NotMapped]
-        public List<int> SubsrcibedUsers { get; set; }
+        public List<string> SubsrcibedUsers { get; set; }
         [Display(Name ="Max Travellers:")]
         public int MaxTravellers { get; set; }
         [Display(Name ="Mode Of Travel:")]
@@ -36,5 +37,10 @@ namespace TravelConnect.Models
         public decimal Cost { get; set; }
         [Display(Name = "Trip Description:")]
         public string TripDescription { get; set; }
+        [NotMapped]
+        [Display(Name = "Upload a custom picture:")]
+        public IFormFile FileToUpload { get; set; }
+        [Display(Name = "Upload a custom picture:")]
+        public string CustomPicturePath { get; set; }
     }
 }

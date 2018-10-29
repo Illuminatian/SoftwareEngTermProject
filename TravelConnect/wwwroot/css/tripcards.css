@@ -1,0 +1,106 @@
+﻿/*Card container for individual card*/
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 330px;
+    height: 260px;
+    display: inline-block;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 10px;
+    float: left;
+    color: forestgreen;
+    display: -webkit-flex; /* Safari */
+    -webkit-flex-wrap: wrap; /* Safari 6.1+ */
+    display: flex;
+    flex-wrap: wrap;
+}
+/*Card shadow is more pronounced when hovering*/
+    .card:hover {
+        box-shadow: 0 15px 50px 0 rgba(0,0,0,0.4);
+    }
+/*Card becomes opaque when clicked on*/
+    .card:active {
+        opacity: 0.35;
+        filter: alpha(opacity=50); /* For IE8 and earlier */
+    }
+/**/
+.container {
+    padding: 2px 16px;
+}
+/*Sizing for image*/
+.trip_image {
+    width: 330px;
+    height: 180px;
+}
+
+.icon {
+    /*display: flex;*/
+    position: relative;
+    text-align: right;
+    color: forestgreen;
+}
+
+.container_icon_car {
+    padding: 2px 16px;
+    position: relative;
+    left: 20px;
+    bottom: 63px;
+    font-size: 18px;
+}
+
+.container_icon_plane {
+    padding: 2px 16px;
+    position: relative;
+    left: 20px;
+    bottom: 63px;
+    font-size: 21px;
+}
+
+.container_icon_bus {
+    padding: 2px 16px;
+    position: relative;
+    left: 20px;
+    bottom: 63px;
+    font-size: 18px;
+}
+
+.container_icon_train {
+    padding: 2px 16px;
+    position: relative;
+    left: 20px;
+    bottom: 63px;
+    font-size: 18px;
+}
+
+.container_icon_ship {
+    padding: 2px 16px;
+    position: relative;
+    left: 20px;
+    bottom: 63px;
+    font-size: 18px;
+}
+
+.dollar1 {
+    padding: 2px 16px;
+    position: relative;
+    left: -20px;
+    bottom: 35px;
+    font-size: 16px;
+}
+
+.dollar2 {
+    padding: 2px 16px;
+    position: relative;
+    left: -20px;
+    bottom: 35px;
+    font-size: 16px;
+}
+
+.dollar3 {
+    padding: 2px 16px;
+    position: relative;
+    left: -20px;
+    bottom: 35px;
+    font-size: 16px;
+}

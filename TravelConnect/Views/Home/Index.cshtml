@@ -4,6 +4,22 @@
   ViewData["Title"] = "Trip Index";
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .flex-container {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #ffffff;
+    }
+
+        .flex-container > div {
+            background-color: #f1f1f1;
+            width: 200px;
+            margin: 10px;
+            text-align: center;
+            line-height: 150px;
+            font-size: 20px;
+        }
+</style>
 
 <h2>Trip Index</h2>
 
@@ -82,3 +98,13 @@
     }
   </tbody>
 </table>
+<h2>TEST</h2>
+<div class="flex-container">
+    @foreach (var item in Model)
+    {<div>
+        <h2>Picture!</h2>
+        @Html.DisplayFor(modelItem => item.CreateUserId)
+    </div> 
+    }      
+</div>
+

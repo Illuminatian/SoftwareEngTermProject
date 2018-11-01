@@ -37,70 +37,89 @@
 .icon {
     /*display: flex;*/
     position: relative;
-    text-align: right;
+    text-align: left;
     color: forestgreen;
 }
 
 .container_icon_car {
     padding: 2px 16px;
     position: relative;
-    left: 20px;
+    left: 270px;
     bottom: 63px;
+    width: 20px;
     font-size: 18px;
 }
 
 .container_icon_plane {
     padding: 2px 16px;
     position: relative;
-    left: 20px;
+    left: 270px;
     bottom: 63px;
+    width: 20px;
     font-size: 21px;
 }
 
 .container_icon_bus {
     padding: 2px 16px;
     position: relative;
-    left: 20px;
+    left: 270px;
     bottom: 63px;
+    width: 20px;
     font-size: 18px;
 }
 
 .container_icon_train {
     padding: 2px 16px;
     position: relative;
-    left: 20px;
+    left: 270px;
     bottom: 63px;
+    width: 20px;
     font-size: 18px;
 }
-
 .container_icon_ship {
     padding: 2px 16px;
     position: relative;
-    left: 20px;
+    left: 270px;
     bottom: 63px;
+    width: 20px;
     font-size: 18px;
 }
-
 .dollar1 {
     padding: 2px 16px;
     position: relative;
-    left: -20px;
+    left: 240px;
     bottom: 35px;
+    width: 20px;
     font-size: 16px;
 }
 
 .dollar2 {
     padding: 2px 16px;
     position: relative;
-    left: -20px;
+    left: 235px;
     bottom: 35px;
+    width: 55px;
     font-size: 16px;
 }
 
 .dollar3 {
     padding: 2px 16px;
     position: relative;
-    left: -20px;
+    left: 225px;
     bottom: 35px;
+    width: 70px;
     font-size: 16px;
+}
+.icon-edit {
+    /*display: flex;*/
+    position: relative;
+    text-align: right;
+    color: forestgreen;
+}
+.edit-trip {
+    padding: 2px 16px;
+    position: relative;
+    left: 280px;
+    bottom: 175px;
+    font-size: 25px
 }

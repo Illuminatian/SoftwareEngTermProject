@@ -18,13 +18,15 @@ namespace TravelConnect.Models
         public string CreateUserId { get; set; }
         public DateTime CreateDate { get; set; }
         [Display(Name ="Leaving On:")]
-        public DateTime TripStartDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? TripStartDate { get; set; }
         [Display(Name ="Departing From:")]
         public string DepartureCity { get; set; }
         [Display(Name ="Travelling To:")]
         public string DestinationCity { get; set; }
         [Display(Name = "Returning On:")]
-        public DateTime TripEndDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime? TripEndDate { get; set; }
         [Display(Name ="Trip Length (Nights):")]
         public int TripLength { get; set; }
         [NotMapped]

@@ -11,6 +11,7 @@
     }
 </script>
 
+<h2>Explore Trips</h2>
 
 <head>   
 </head>
@@ -31,7 +32,7 @@
                                 </b>
                             </h4>
                             <p>
-                                @Html.DisplayFor(modelItem => item.TripStartDate)
+                                @Html.DisplayFor(modelItem => item.TripStartDate) - @Html.DisplayFor(modelItem => item.TripEndDate)
                             </p>
                             @if (item.Cost < 500)
                             {
@@ -118,7 +119,7 @@
                                 </b>
                             </h4>
                             <p>
-                                @Html.DisplayFor(modelItem => item.TripStartDate)
+                                @Html.DisplayFor(modelItem => item.TripStartDate) - @Html.DisplayFor(modelItem => item.TripEndDate)
                             </p>
                             @if (item.Cost < 500)
                             {

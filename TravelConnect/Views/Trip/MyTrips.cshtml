@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<TravelConnect.Models.TripModel>
+@using TravelConnect.Enums
 
 @{
     ViewData["Title"] = "My Trips";
@@ -83,3 +84,107 @@
         }
     </tbody>
 </table>
+
+@if (Model.Count() > 0)
+{
+    @foreach (var item in Model)
+    {
+        <a href="/Trip/Details/@item.Id">
+            <div class="card">
+                <img src="~/images/@item.CustomPicturePath" alt="Trip Image" class="trip_image">
+                
+                <a href="/Trip/Edit/@item.Id">
+                    <div class="edit-trip">
+                        <div class="icon-edit">
+
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x" style="color: white; font-size: 50px; top: 10px;"></i>
+                                <i class="fa fa-pencil fa-stack-1x"></i>
+                            </span>
+
+                        </div>
+                    </div>
+                </a>
+                <div class="container">
+                    <h4 style="font-size:28px;">
+                        <b>
+                            @Html.DisplayFor(modelItem => item.DestinationCity)
+                        </b>
+                    </h4>
+                    <p>
+                        @Html.DisplayFor(modelItem => item.TripStartDate) - @Html.DisplayFor(modelItem => item.TripEndDate)
+                    </p>
+                    @if (item.Cost < 500)
+                    {
+                        <div class="dollar1">
+                            <div class="icon">
+                                <i class="fa fa-dollar"></i>
+                            </div>
+                        </div>
+                    }
+                    else if (item.Cost >= 500 && item.Cost < 1500)
+                    {
+                        <div class="dollar2">
+                            <div class="icon">
+                                <i class="fa fa-dollar"></i>
+                                <i class="fa fa-dollar"></i>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="dollar3">
+                            <div class="icon">
+                                <i class="fa fa-dollar"></i>
+                                <i class="fa fa-dollar"></i>
+                                <i class="fa fa-dollar"></i>
+                            </div>
+                        </div>
+                    }
+                    <div class="mode_icon">
+                        @switch (item.TravelMode)
+                        {
+                            case TravelMode.Mode.Car:
+                                <div class="container_icon_car">
+                                    <div class="icon">
+                                        <i class="fa fa-car"></i>
+                                    </div>
+                                </div>
+                                break;
+
+                            case TravelMode.Mode.Airplane:
+                                <div class="container_icon_plane">
+                                    <div class="icon">
+                                        <i class="fa fa-plane"></i>
+                                    </div>
+                                </div>
+                                break;
+                            case TravelMode.Mode.Bus:
+                                <div class="container_icon_bus">
+                                    <div class="icon">
+                                        <i class="fa fa-bus"></i>
+                                    </div>
+                                </div>
+                                break;
+                            case TravelMode.Mode.Train:
+                                <div class="container_icon_train">
+                                    <div class="icon">
+                                        <i class="fa fa-train"></i>
+                                    </div>
+                                </div>
+                                break;
+                            case TravelMode.Mode.Boat:
+                                <div class="container_icon_ship">
+                                    <div class="icon">
+                                        <i class="fa fa-ship"></i>
+                                    </div>
+                                </div>
+                                break;
+                        }
+                    </div>
+                </div>
+            </div>
+        </a>
+    }
+}
+

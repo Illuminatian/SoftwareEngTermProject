@@ -133,7 +133,7 @@ namespace TravelConnect.Controllers
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [FromForm][Bind("Id,CreateUserId,CreateDate,TripStartDate,DepartureCity,DestinationCity,TripEndDate,MaxTravellers,TravelMode,Cost,TripDescription,FileToUpload")] TripModel tripModel)
+        public async Task<IActionResult> Edit(int id, [FromForm][Bind("Id,CreateUserId,CreateDate,TripStartDate,DepartureCity,DestinationCity,TripEndDate,MaxTravellers,TravelMode,Cost,TripDescription,FileToUpload,CustomPicturePath")] TripModel tripModel)
         {
             if (id != tripModel.Id)
             {

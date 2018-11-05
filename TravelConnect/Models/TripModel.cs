@@ -42,7 +42,7 @@ namespace TravelConnect.Models
         [NotMapped]
         [Display(Name = "Upload a custom picture:")]
         public IFormFile FileToUpload { get; set; }
-        [Display(Name = "Upload a custom picture:")]
+        [Display(Name = "Current custom picture:")]
         public string CustomPicturePath { get; set; }
     }
 }

@@ -92,11 +92,19 @@
         <a href="/Trip/Details/@item.Id">
             <div class="card">
                 <img src="~/images/@item.CustomPicturePath" alt="Trip Image" class="trip_image">
-                <div class="edit-trip">
-                    <div class="icon-edit">
-                        <i class="fa fa-pencil"></i>
+                
+                <a href="/Trip/Edit/@item.Id">
+                    <div class="edit-trip">
+                        <div class="icon-edit">
+
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x" style="color: white; font-size: 50px; top: 10px;"></i>
+                                <i class="fa fa-pencil fa-stack-1x"></i>
+                            </span>
+
+                        </div>
                     </div>
-                </div>
+                </a>
                 <div class="container">
                     <h4 style="font-size:28px;">
                         <b>

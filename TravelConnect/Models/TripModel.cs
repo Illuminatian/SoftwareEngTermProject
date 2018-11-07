@@ -19,25 +19,34 @@ namespace TravelConnect.Models
         public DateTime CreateDate { get; set; }
         [Display(Name ="Leaving On:")]
         [DataType(DataType.Date)]
+        [Required]
         public DateTime? TripStartDate { get; set; }
         [Display(Name ="Departing From:")]
+        [Required]
         public string DepartureCity { get; set; }
         [Display(Name ="Travelling To:")]
+        [Required]
         public string DestinationCity { get; set; }
         [Display(Name = "Returning On:")]
         [DataType(DataType.Date)]
+        [Required]
         public DateTime? TripEndDate { get; set; }
         [Display(Name ="Trip Length (Nights):")]
+        [Required]
         public int TripLength { get; set; }
         [NotMapped]
         public List<string> SubsrcibedUsers { get; set; }
         [Display(Name ="Max Travellers:")]
+        [Required]
         public int MaxTravellers { get; set; }
         [Display(Name ="Mode Of Travel:")]
+        [Required]
         public TravelMode.Mode TravelMode { get; set; }
         [Display(Name ="Trip Cost:")]
+        [Required]
         public decimal Cost { get; set; }
         [Display(Name = "Trip Description:")]
+        [Required]
         public string TripDescription { get; set; }
         [NotMapped]
         [Display(Name = "Upload a custom picture:")]

@@ -18,7 +18,7 @@
 }
 /*Card shadow is more pronounced when hovering*/
     .card:hover {
-        box-shadow: 0 15px 50px 0 rgba(0,0,0,0.4);
+        box-shadow: 0 15px 25px 0 rgba(0,0,0,0.4);
     }
 /*Card becomes opaque when clicked on*/
     .card:active {
@@ -111,12 +111,7 @@
     width: 70px;
     font-size: 16px;
 }
-.icon-edit {
-    /*display: flex;*/
-    position: relative;
-    text-align: right;
-    color: forestgreen;
-}
+
 .edit-trip {
     padding: 2px 16px;
     font-size: 25px; 
@@ -126,5 +121,31 @@
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     text-align: center;
-    color: white;
 }
+.icon-edit {
+    /*display: flex;*/
+    position: relative;
+    text-align: right;
+}
+.fa-circle {
+    color: white;
+    font-size: 50px;
+    top: 10px;
+    text-shadow: 0px 0px 1px #000;
+}
+
+.fa-pencil {
+    color: forestgreen;
+}
+    .fa-pencil:hover {
+        color:mediumseagreen;
+    }
+
+.fa-star {
+    color: dimgrey;
+    text-shadow: 0px 0px 1px #000;
+    top: 1px;
+}
+    .fa-star:hover {
+        color:darkgrey;
+    }

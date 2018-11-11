@@ -35,7 +35,7 @@ namespace TravelConnect.Models
         [Required]
         public int TripLength { get; set; }
         [NotMapped]
-        public List<string> SubsrcibedUsers { get; set; }
+        public List<string> SubscribedUsers { get; set; }
         [Display(Name ="Max Travellers:")]
         [Required]
         public int MaxTravellers { get; set; }
@@ -53,5 +53,13 @@ namespace TravelConnect.Models
         public IFormFile FileToUpload { get; set; }
         [Display(Name = "Current custom picture:")]
         public string CustomPicturePath { get; set; }
+        [NotMapped]
+        [Display(Name ="Subscribe to Trip:")]
+        public bool Subscribed { get; set; }
+
+        public TripModel()
+        {
+            this.SubscribedUsers = new List<string>();
+        }
     }
 }

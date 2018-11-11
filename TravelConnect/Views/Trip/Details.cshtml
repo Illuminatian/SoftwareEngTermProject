@@ -1,78 +1,120 @@
 ﻿@model TravelConnect.Models.TripModel
 @using TravelConnect.Helpers
 @{
-  ViewData["Title"] = "Details";
-  Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script type="text/javascript">
+  function TripSubscribe(tripIdIn, userIdIn) {
+    var frmMdl = {
+      tripId: tripIdIn,
+      userId: userIdIn,
+      isChecked: $("#chkSubscribed").prop("checked")
+    };
+
+    $.ajax({
+      url: "../Subscribe",
+      type: "POST",
+      data: frmMdl
+    });
+  }
+</script>
 <h2>Details</h2>
 
 <div>
-    <h4>TripModel</h4>
+  @if (!String.IsNullOrWhiteSpace(@Model.CustomPicturePath))
+  {
     <img src="~/images/@Model.CustomPicturePath" alt="Trip Image" class="trip_image">
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CreateDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.CreateDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TripStartDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TripStartDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DepartureCity)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DepartureCity)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.DestinationCity)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.DestinationCity)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TripEndDate)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TripEndDate)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.MaxTravellers)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.MaxTravellers)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TravelMode)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TravelMode)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Cost)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Cost)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.TripDescription)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.TripDescription)
-        </dd>
-    </dl>
+  }
+  else
+  {
+    <img src="~/images/back.jpg" alt="Trip Image" class="trip_image">
+  }
+  <hr />
+  <dl class="dl-horizontal">
+    <dt>
+      @Html.DisplayNameFor(model => model.CreateDate)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.CreateDate)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.TripStartDate)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.TripStartDate)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.DepartureCity)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.DepartureCity)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.DestinationCity)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.DestinationCity)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.TripEndDate)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.TripEndDate)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.MaxTravellers)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.MaxTravellers)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.TravelMode)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.TravelMode)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Cost)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.Cost)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.TripDescription)
+    </dt>
+    <dd>
+      @Html.DisplayFor(model => model.TripDescription)
+    </dd>
+    <dt>
+      @Html.DisplayNameFor(model => model.Subscribed)
+    </dt>
+    <dd>
+      @if (Model.SubscribedUsers.Count < Model.MaxTravellers && Model.CreateUserId != User.GetUserId())
+      {
+        if (Model.Subscribed)
+        {
+          <input id="chkSubscribed" type="checkbox" checked="checked" onclick="TripSubscribe('@Model.Id','@User.GetUserId()');" />
+        }
+        else
+        {
+          <input id="chkSubscribed"  type="checkbox" onclick="TripSubscribe('@Model.Id','@User.GetUserId()');" />
+        }
+      }
+      else
+      {
+        <input id="chkSubscribed"  type="checkbox" checked="@Model.Subscribed" disabled="disabled" onclick="TripSubscribe(@Model.Id, @User.GetUserId()); return false;" />
+      }
+    </dd>
+  </dl>
+
+  
 </div>
 <div>
   @if (User.GetUserId() == Model.CreateUserId)
   {
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
-    <span>|</span>
   }
 
   <a asp-action="Index">Back to List</a>

@@ -51,10 +51,36 @@ namespace TravelConnect.Controllers
                       + Path.GetExtension(fileName);
         }
 
-    // GET: Trip
-    public async Task<IActionResult> Index()
+        // GET: Trip
+        public async Task<IActionResult> Index()
         {
-            return View(await _context.TripModel.ToListAsync());
+            if(User.Identity.IsAuthenticated)
+            {
+                var subscribed = _context.SubscribedModel.Where(x => x.UserId == User.GetUserId());
+                List<int> tripIds = new List<int>();
+
+                if (subscribed != null)
+                {
+                    foreach (var subscription in subscribed)
+                    {
+                        tripIds.Add(subscription.TripId);
+                    }
+                }
+
+                var trips = await _context.TripModel.ToListAsync();
+                foreach (var trip in trips)
+                {
+                    if (tripIds.Contains(trip.Id))
+                    {
+                        trip.Subscribed = true;
+                    }
+                }
+                return View(trips);
+            }
+            else
+            {
+                return View(await _context.TripModel.ToListAsync());
+            }
         }
 
         [Authorize]
@@ -78,7 +104,41 @@ namespace TravelConnect.Controllers
                 return NotFound();
             }
 
+            var subscribedUsers = _context.SubscribedModel.Where(x => x.TripId == id);
+
+            foreach(var user in subscribedUsers)
+            {
+                if (User.GetUserId() == user.UserId)
+                {
+                    tripModel.Subscribed = true;
+                }
+
+                tripModel.SubscribedUsers.Add(user.UserId);
+            }
+
             return View(tripModel);
+        }
+
+        public void Subscribe(int tripId, string userId)
+        {
+            var id = tripId;
+            var user = userId;
+            var subscribedModel = _context.SubscribedModel.Where(x => x.TripId == tripId && x.UserId == userId).FirstOrDefault();
+
+            if (subscribedModel == null)
+            {
+                subscribedModel = new Subscribed();
+                subscribedModel.TripId = tripId;
+                subscribedModel.UserId = userId;
+                _context.SubscribedModel.Add(subscribedModel);
+            }
+            else
+            {
+                _context.SubscribedModel.Remove(subscribedModel);
+                
+            }
+
+            _context.SaveChanges();
         }
 
         // GET: Trip/Create

@@ -79,3 +79,9 @@ body {
     text-align: right;
 }
 
+.trip_logo {
+    width: 150px;
+    height: 49px;
+    bottom: 15px;
+}
+

@@ -62,10 +62,11 @@
         </div>
         @if (Model.CustomPicturePath != null)
         {
-          <div class="form-group">
+        <div class="form-group">
             <label asp-for="CustomPicturePath" class="control-label"></label>
             <input asp-for="CustomPicturePath" readonly="readonly" />
-          </div>
+            <img src="~/images/@Model.CustomPicturePath" alt="Trip Image" class="trip_image">
+        </div>
         }
         <div class="form-group">
           <input type="submit" value="Save" class="btn btn-default" />

@@ -6,6 +6,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>@ViewData["Title"] - TravelConnect</title>
 
+    <![if !IE]>
+    <link rel="icon" href="~/images/logo_mini_qmO_icon.ico" type="image/x-icon" />
+    <![endif]>
+    <!-- This is needed for IE -->
+    <link rel="shortcut icon" href="~/images/logo_mini_qmO_icon.ico" type="image/ico" />
+
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -28,7 +34,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">TravelConnect</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/logo_transparent.png" alt="TravelConnect" class="trip_logo">
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

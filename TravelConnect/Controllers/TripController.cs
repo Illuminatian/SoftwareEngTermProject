@@ -51,6 +51,38 @@ namespace TravelConnect.Controllers
                       + Path.GetExtension(fileName);
         }
 
+        public async Task<IActionResult> Search(SearchModel search)
+        {
+            var toReturn = await _context.TripModel.ToListAsync();
+
+            if(search.DestinationCity != null)
+            {
+                toReturn = toReturn.Where(x => x.DestinationCity == search.DestinationCity).ToList();
+            }
+
+            if(search.DepartureCity != null)
+            {
+                toReturn = toReturn.Where(x => x.DepartureCity == search.DepartureCity).ToList();
+            }
+
+            if (search.MaxCost > 0)
+            {
+                toReturn = toReturn.Where(x => x.Cost <= search.MaxCost).ToList();
+            }
+
+            if (search.DepartureDate != null)
+            {
+                toReturn = toReturn.Where(x => x.TripStartDate == search.DepartureDate).ToList();
+            }
+
+            if (search.TripLength > 0)
+            {
+                toReturn = toReturn.Where(x => x.TripLength <= search.TripLength).ToList();
+            }
+
+            return View("Index", toReturn);
+        }
+
         // GET: Trip
         public async Task<IActionResult> Index()
         {

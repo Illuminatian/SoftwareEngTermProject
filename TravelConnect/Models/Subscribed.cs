@@ -19,4 +19,12 @@ namespace TravelConnect.Models
         public string UserId { get; set; }
         public bool IsConfirmed { get; set; }
     }
+
+    [NotMapped]
+    public class SubscribedUsers
+    {
+        public string UserId { get; set; }
+        public string UserName { get; set; }
+        public bool IsConfirmed { get; set; }
+    }
 }

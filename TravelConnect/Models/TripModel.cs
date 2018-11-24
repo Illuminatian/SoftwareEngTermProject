@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -17,22 +18,48 @@ namespace TravelConnect.Models
         public string CreateUserId { get; set; }
         public DateTime CreateDate { get; set; }
         [Display(Name ="Leaving On:")]
-        public DateTime TripStartDate { get; set; }
+        [DataType(DataType.Date)]
+        [Required]
+        public DateTime? TripStartDate { get; set; }
         [Display(Name ="Departing From:")]
+        [Required]
         public string DepartureCity { get; set; }
         [Display(Name ="Travelling To:")]
+        [Required]
         public string DestinationCity { get; set; }
+        [Display(Name = "Returning On:")]
+        [DataType(DataType.Date)]
+        [Required]
+        public DateTime? TripEndDate { get; set; }
         [Display(Name ="Trip Length (Nights):")]
+        [Required]
         public int TripLength { get; set; }
         [NotMapped]
-        public List<int> SubsrcibedUsers { get; set; }
+        public List<SubscribedUsers> SubscribedUsers { get; set; }
         [Display(Name ="Max Travellers:")]
+        [Required]
         public int MaxTravellers { get; set; }
         [Display(Name ="Mode Of Travel:")]
+        [Required]
         public TravelMode.Mode TravelMode { get; set; }
         [Display(Name ="Trip Cost:")]
+        [Required]
         public decimal Cost { get; set; }
         [Display(Name = "Trip Description:")]
+        [Required]
         public string TripDescription { get; set; }
+        [NotMapped]
+        [Display(Name = "Upload a custom picture:")]
+        public IFormFile FileToUpload { get; set; }
+        [Display(Name = "Current custom picture:")]
+        public string CustomPicturePath { get; set; }
+        [NotMapped]
+        [Display(Name ="Subscribe to Trip:")]
+        public bool Subscribed { get; set; }
+
+        public TripModel()
+        {
+            this.SubscribedUsers = new List<SubscribedUsers>();
+        }
     }
 }

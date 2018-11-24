@@ -3,11 +3,19 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - TravelConnectIsAwesome</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>@ViewData["Title"] - TravelConnect</title>
+
+    <![if !IE]>
+    <link rel="icon" href="~/images/logo_mini_qmO_icon.ico" type="image/x-icon" />
+    <![endif]>
+    <!-- This is needed for IE -->
+    <link rel="shortcut icon" href="~/images/logo_mini_qmO_icon.ico" type="image/ico" />
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/tripcards.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
@@ -26,11 +34,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">TravelConnect</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/logo_transparent.png" alt="TravelConnect" class="trip_logo">
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Explore</a></li>
                     @if (User.Identity.IsAuthenticated)
                     {
                         <li><a asp-area="" asp-controller="Trip" asp-action="Create">Create Trip</a></li>
@@ -48,7 +58,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2018 - TravelConnect</p>
+            <div class="footer">&copy; 2018 - TravelConnect</div>
         </footer>
     </div>
 

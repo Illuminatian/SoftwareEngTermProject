@@ -3,19 +3,21 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelConnect.Data;
 
 namespace TravelConnect.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20181029200415_TripSubbedUsers")]
+    partial class TripSubbedUsers
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.1.4-rtm-31024")
+                .HasAnnotation("ProductVersion", "2.1.3-rtm-32065")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -221,26 +223,21 @@ namespace TravelConnect.Data.Migrations
 
                     b.Property<string>("CustomPicturePath");
 
-                    b.Property<string>("DepartureCity")
-                        .IsRequired();
+                    b.Property<string>("DepartureCity");
 
-                    b.Property<string>("DestinationCity")
-                        .IsRequired();
+                    b.Property<string>("DestinationCity");
 
                     b.Property<int>("MaxTravellers");
 
                     b.Property<int>("TravelMode");
 
-                    b.Property<string>("TripDescription")
-                        .IsRequired();
+                    b.Property<string>("TripDescription");
 
-                    b.Property<DateTime?>("TripEndDate")
-                        .IsRequired();
+                    b.Property<DateTime>("TripEndDate");
 
                     b.Property<int>("TripLength");
 
-                    b.Property<DateTime?>("TripStartDate")
-                        .IsRequired();
+                    b.Property<DateTime>("TripStartDate");
 
                     b.HasKey("Id");
 

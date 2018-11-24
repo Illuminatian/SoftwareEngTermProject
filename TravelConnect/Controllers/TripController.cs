@@ -34,22 +34,20 @@ namespace TravelConnect.Controllers
 
             // full path to file in temp location
             var filePath = Path.GetTempFileName();
-            string uploads;
-
-            if (string.IsNullOrWhiteSpace(hostingEnvironment.WebRootPath))
+            try
             {
-                uploads = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot\\images");
-            }
-            else
-            {
+                string uploads;
                 uploads = Path.Combine(hostingEnvironment.WebRootPath, "images");
-            }
-            
-            var savedFileName = GetUniqueFileName(file.FileName);
-            var fullPath = Path.Combine(uploads, savedFileName);
-            file.CopyTo(new FileStream(fullPath, FileMode.Create));
+                var savedFileName = GetUniqueFileName(file.FileName);
+                var fullPath = Path.Combine(uploads, savedFileName);
+                file.CopyTo(new FileStream(fullPath, FileMode.Create));
 
-            return savedFileName;
+                return savedFileName;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
         private string GetUniqueFileName(string fileName)
         {

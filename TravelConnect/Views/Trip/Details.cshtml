@@ -1,8 +1,8 @@
 ﻿@model TravelConnect.Models.TripModel
 @using TravelConnect.Helpers
 @{
-    ViewData["Title"] = "Details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+  ViewData["Title"] = "Details";
+  Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <script type="text/javascript">
@@ -17,6 +17,29 @@
       url: "../Subscribe",
       type: "POST",
       data: frmMdl
+    });
+  }
+
+  function ConfirmUser(isConfirmedIn, userIdIn, tripIdIn) {
+    var frmMdl = {
+      userId: userIdIn,
+      isConfirmed: isConfirmedIn,
+      tripId: tripIdIn
+    };
+
+    $.ajax({
+      url: "../Confirm",
+      type: "POST",
+      data: frmMdl,
+      success: function (json) {
+        if (json.ok == true) {
+          location.reload(true);
+          $("#error").hide();
+        }
+        else {
+          $("#error").show();
+        }
+      }
     });
   }
 </script>
@@ -87,44 +110,64 @@
     <dd>
       @Html.DisplayFor(model => model.TripDescription)
     </dd>
-    <dt>
-      @Html.DisplayNameFor(model => model.Subscribed)
-    </dt>
-    <dd>
-      @if (Model.SubscribedUsers.Count < Model.MaxTravellers && Model.CreateUserId != User.GetUserId())
-      {
-        if (Model.Subscribed)
+    @if (Model.SubscribedUsers.Count < Model.MaxTravellers && Model.CreateUserId != User.GetUserId())
+    {
+      <dt>
+        @Html.DisplayNameFor(model => model.Subscribed)
+      </dt>
+      <dd>
+        @if (Model.Subscribed)
         {
           <input id="chkSubscribed" type="checkbox" checked="checked" onclick="TripSubscribe('@Model.Id','@User.GetUserId()');" />
         }
         else
         {
-          <input id="chkSubscribed"  type="checkbox" onclick="TripSubscribe('@Model.Id','@User.GetUserId()');" />
+          <input id="chkSubscribed" type="checkbox" onclick="TripSubscribe('@Model.Id','@User.GetUserId()');" />
         }
-      }
-      else
-      {
-        <input id="chkSubscribed"  type="checkbox" checked="@Model.Subscribed" disabled="disabled" onclick="TripSubscribe(@Model.Id, @User.GetUserId()); return false;" />
-      }
-    </dd>
+      </dd>
+    }
+    @if (Model.CreateUserId == User.GetUserId() && Model.SubscribedUsers.Count > 0)
+    {
+      <dt>
+        Subscribed Users:
+      </dt>
+      <dd>
+        @foreach (var user in Model.SubscribedUsers)
+        {
+          if (user.IsConfirmed)
+          {
+            <span>@user.UserName</span><br />
+          }
+          else
+          {
+            <span>Confirm subscribed user @user.UserName? </span><a href="#" onclick="ConfirmUser('true', '@user.UserId', '@Model.Id');">Yes </a><span>|</span><a href="#" onclick="ConfirmUser('false', '@user.UserId', '@Model.Id');"> No</a><br />
+            <div id="error" hidden="hidden">
+              <span>Error</span>
+            </div>
+          }
+
+        }
+      </dd>
+    }
+
   </dl>
 
-  
+
 </div>
 <div>
-    <tr>
-        @if (User.GetUserId() == Model.CreateUserId)
-        {
-            <td>
-                <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-            </td>
-            <td>
-                <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a> |
-            </td>
-        }
-            <td>
-                <a asp-action="Index">Back to List</a>
-            </td>
-    </tr>
+  <tr>
+    @if (User.GetUserId() == Model.CreateUserId)
+    {
+      <td>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+      </td>
+      <td>
+        <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a> |
+      </td>
+    }
+    <td>
+      <a asp-action="Index">Back to List</a>
+    </td>
+  </tr>
 
 </div>

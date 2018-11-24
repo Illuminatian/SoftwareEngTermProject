@@ -145,7 +145,14 @@ namespace TravelConnect.Controllers
                     tripModel.Subscribed = true;
                 }
 
-                tripModel.SubscribedUsers.Add(user.UserId);
+                var subscribed = new SubscribedUsers();
+                var subbedUser = _context.Users.Where(x => x.Id == user.UserId).FirstOrDefault();
+
+                subscribed.UserName = subbedUser.FirstName + " " + subbedUser.LastName;
+                subscribed.UserId = user.UserId;
+                subscribed.IsConfirmed = user.IsConfirmed;
+
+                tripModel.SubscribedUsers.Add(subscribed);
             }
 
             return View(tripModel);
@@ -153,8 +160,6 @@ namespace TravelConnect.Controllers
 
         public void Subscribe(int tripId, string userId)
         {
-            var id = tripId;
-            var user = userId;
             var subscribedModel = _context.SubscribedModel.Where(x => x.TripId == tripId && x.UserId == userId).FirstOrDefault();
 
             if (subscribedModel == null)
@@ -171,6 +176,33 @@ namespace TravelConnect.Controllers
             }
 
             _context.SaveChanges();
+        }
+
+        public JsonResult Confirm(string userId, bool isConfirmed, int tripId)
+        {
+            var subscribedModel = _context.SubscribedModel.Where(x => x.TripId == tripId && x.UserId == userId).FirstOrDefault();
+
+            if(subscribedModel == null)
+            {
+                return Json(new { OK = false });
+            }
+            else
+            {
+                if(isConfirmed)
+                {
+                    subscribedModel.IsConfirmed = true;
+                    _context.Update(subscribedModel);
+
+                }
+                else
+                {
+                    _context.SubscribedModel.Remove(subscribedModel);
+                }
+
+                _context.SaveChanges();
+
+                return Json(new { OK = true });
+            }
         }
 
         // GET: Trip/Create

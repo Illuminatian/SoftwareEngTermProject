@@ -35,7 +35,7 @@ namespace TravelConnect.Models
         [Required]
         public int TripLength { get; set; }
         [NotMapped]
-        public List<string> SubscribedUsers { get; set; }
+        public List<SubscribedUsers> SubscribedUsers { get; set; }
         [Display(Name ="Max Travellers:")]
         [Required]
         public int MaxTravellers { get; set; }
@@ -59,7 +59,7 @@ namespace TravelConnect.Models
 
         public TripModel()
         {
-            this.SubscribedUsers = new List<string>();
+            this.SubscribedUsers = new List<SubscribedUsers>();
         }
     }
 }

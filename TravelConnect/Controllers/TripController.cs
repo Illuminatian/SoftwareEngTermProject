@@ -125,7 +125,34 @@ namespace TravelConnect.Controllers
         [Authorize]
         public async Task<IActionResult> MyTrips()
         {
-            return View(await _context.TripModel.Where(x => x.CreateUserId == User.GetUserId()).ToListAsync());
+            //return View(await _context.TripModel.Where(x => x.CreateUserId == User.GetUserId()).ToListAsync());
+            if (User.Identity.IsAuthenticated)
+            {
+                var subscribed = _context.SubscribedModel.Where(x => x.UserId == User.GetUserId());
+                List<int> tripIds = new List<int>();
+
+                if (subscribed != null)
+                {
+                    foreach (var subscription in subscribed)
+                    {
+                        tripIds.Add(subscription.TripId);
+                    }
+                }
+
+                var trips = await _context.TripModel.ToListAsync();
+                foreach (var trip in trips)
+                {
+                    if (tripIds.Contains(trip.Id))
+                    {
+                        trip.Subscribed = true;
+                    }
+                }
+                return View(trips);
+            }
+            else
+            {
+                return View(await _context.TripModel.ToListAsync());
+            }
         }
 
         // GET: Trip/Details/5

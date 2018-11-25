@@ -175,10 +175,11 @@
       </dd>
     }
   </dl>
-  <div id="dvMessages">
-    <h2>Messages</h2>
-    @if (Model.CreateUserId == User.GetUserId() || Model.Confirmed == true)
-    {
+  @if (Model.CreateUserId == User.GetUserId() || Model.Confirmed == true)
+  {
+    <div id="dvMessages">
+      <h2>Messages</h2>
+
       <dl>
         @foreach (var message in Model.Messages)
         {
@@ -188,11 +189,9 @@
           </dd>
         }
       </dl>
-    }
-  </div>
 
-  @if (Model.CreateUserId == User.GetUserId() || Model.Confirmed == true)
-  {
+    </div>
+
     <div class="form-group">
       <label asp-for="Message" class="control-label"></label>
       <input asp-for="Message" id="txtMessage" class="form-control" />

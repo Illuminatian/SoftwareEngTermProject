@@ -1,0 +1,43 @@
+﻿@model TravelConnect.Models.SearchModel
+@using TravelConnect.Enums
+
+@{ 
+    ViewData["Title"] = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Search Trips</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SearchTrips" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="DepartureCity" class="control-label"></label>
+                <input asp-for="DepartureCity" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="DestinationCity" class="control-label"></label>
+                <input asp-for="DestinationCity" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxCost" class="control-label"></label>
+                <input asp-for="MaxCost" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="TripLength" class="control-label"></label>
+                <input asp-for="TripLength" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartureDate" class="control-label"></label>
+                <input asp-for="DepartureDate" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

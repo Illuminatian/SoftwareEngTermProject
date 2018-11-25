@@ -42,6 +42,31 @@
       }
     });
   }
+
+  function PostMessage(userIdIn, tripIdIn) {
+    var frmMdl = {
+      Id: null,
+      UserId: userIdIn,
+      PostTime: new Date($.now()),
+      TripId: tripIdIn,
+      Post: $("#txtMessage").val()
+    };
+
+    $.ajax({
+      url: "../PostMessage",
+      type: "POST",
+      data: frmMdl,
+      success: function (json) {
+        if (json.ok == true) {
+          location.reload(true);
+          $("#error").hide();
+        }
+        else {
+          $("#error").show();
+        }
+      }
+    });
+  }
 </script>
 <h2>Details</h2>
 
@@ -149,8 +174,33 @@
         }
       </dd>
     }
-
   </dl>
+  <div id="dvMessages">
+    <h2>Messages</h2>
+    @if (Model.CreateUserId == User.GetUserId() || Model.Confirmed == true)
+    {
+      <dl>
+        @foreach (var message in Model.Messages)
+        {
+          <dt>@message.UserName | @message.PostTime</dt>
+          <dd>
+            @message.Post
+          </dd>
+        }
+      </dl>
+    }
+  </div>
+
+  @if (Model.CreateUserId == User.GetUserId() || Model.Confirmed == true)
+  {
+    <div class="form-group">
+      <label asp-for="Message" class="control-label"></label>
+      <input asp-for="Message" id="txtMessage" class="form-control" />
+      <span asp-validation-for="Message" class="text-danger"></span>
+      <input type="button" onclick="PostMessage('@User.GetUserId()', '@Model.Id');" value="Post Message" class="btn btn-default" />
+    </div>
+
+  }
 
 
 </div>

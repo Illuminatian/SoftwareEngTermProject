@@ -138,12 +138,24 @@ namespace TravelConnect.Controllers
 
             var tripModel = await _context.TripModel
                 .FirstOrDefaultAsync(m => m.Id == id);
+
             if (tripModel == null)
             {
                 return NotFound();
             }
 
+            tripModel.Messages = _context.MessagesModel.Where(x => x.TripId == tripModel.Id).ToList();
             var subscribedUsers = _context.SubscribedModel.Where(x => x.TripId == id);
+            var confirmedUsers = subscribedUsers.Where(x => x.IsConfirmed == true);
+
+            foreach (var user in confirmedUsers)
+            {
+                if(user.UserId == User.GetUserId())
+                {
+                    tripModel.Confirmed = true;
+                    break;
+                }
+            }
 
             foreach(var user in subscribedUsers)
             {
@@ -209,6 +221,24 @@ namespace TravelConnect.Controllers
                 _context.SaveChanges();
 
                 return Json(new { OK = true });
+            }
+        }
+
+        public JsonResult PostMessage(MessagesModel model)
+        {
+            var user = _context.Users.Where(x => x.Id == model.UserId).FirstOrDefault();
+            model.UserName = user.FirstName + " " + user.LastName;
+            model.PostTime = DateTime.Now;
+
+            try
+            {
+                _context.MessagesModel.Add(model);
+                _context.SaveChanges();
+                return Json(new { ok = true });
+            }
+            catch(Exception ex)
+            {
+                throw ex;
             }
         }
 

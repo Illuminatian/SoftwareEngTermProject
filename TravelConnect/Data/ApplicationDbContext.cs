@@ -15,5 +15,6 @@ namespace TravelConnect.Data
         }
         public DbSet<TripModel> TripModel { get; set; }
         public DbSet<Subscribed> SubscribedModel { get; set; }
+        public DbSet<MessagesModel> MessagesModel { get; set; }
     }
 }

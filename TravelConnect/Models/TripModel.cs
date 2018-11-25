@@ -56,6 +56,13 @@ namespace TravelConnect.Models
         [NotMapped]
         [Display(Name ="Subscribe to Trip:")]
         public bool Subscribed { get; set; }
+        [NotMapped]
+        public bool Confirmed { get; set; }
+        [NotMapped]
+        public List<MessagesModel> Messages { get; set; }
+        [NotMapped]
+        [Display(Name = "Post a trip message:")]
+        public string Message { get; set; }
 
         public TripModel()
         {

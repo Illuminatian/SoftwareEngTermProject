@@ -71,152 +71,159 @@
 <h2>Details</h2>
 
 <div>
-  @if (!String.IsNullOrWhiteSpace(@Model.CustomPicturePath))
-  {
-    <img src="~/images/@Model.CustomPicturePath" alt="Trip Image" class="trip_image">
-  }
-  else
-  {
-    <img src="~/images/nullimage.png" alt="Trip Image" class="trip_image">
-  }
-  <hr />
-  <dl class="dl-horizontal">
-    <dt>
-      @Html.DisplayNameFor(model => model.CreateDate)
-    </dt>
-    <dd>
-      @Html.DisplayFor(model => model.CreateDate)
-    </dd>
-    <dt>
-      @Html.DisplayNameFor(model => model.TripStartDate)
-    </dt>
-    <dd>
-      @Html.DisplayFor(model => model.TripStartDate)
-    </dd>
-    <dt>
-      @Html.DisplayNameFor(model => model.DepartureCity)
-    </dt>
-    <dd>
-      @Html.DisplayFor(model => model.DepartureCity)
-    </dd>
-    <dt>
-      @Html.DisplayNameFor(model => model.DestinationCity)
-    </dt>
-    <dd>
-      @Html.DisplayFor(model => model.DestinationCity)
-    </dd>
-    <dt>
-      @Html.DisplayNameFor(model => model.TripEndDate)
-    </dt>
-    <dd>
-      @Html.DisplayFor(model => model.TripEndDate)
-    </dd>
-    <dt>
-      @Html.DisplayNameFor(model => model.MaxTravellers)
-    </dt>
-    <dd>
-      @Html.DisplayFor(model => model.MaxTravellers)
-    </dd>
-    <dt>
-      @Html.DisplayNameFor(model => model.TravelMode)
-    </dt>
-    <dd>
-      @Html.DisplayFor(model => model.TravelMode)
-    </dd>
-    <dt>
-      @Html.DisplayNameFor(model => model.Cost)
-    </dt>
-    <dd>
-      @Html.DisplayFor(model => model.Cost)
-    </dd>
-    <dt>
-      @Html.DisplayNameFor(model => model.TripDescription)
-    </dt>
-    <dd>
-      @Html.DisplayFor(model => model.TripDescription)
-    </dd>
-    @if (Model.SubscribedUsers.Count < Model.MaxTravellers && Model.CreateUserId != User.GetUserId())
-    {
-      <dt>
-        @Html.DisplayNameFor(model => model.Subscribed)
-      </dt>
-      <dd>
-        @if (Model.Subscribed)
+    <div style="width: 50%; float:left">
+        @if (!String.IsNullOrWhiteSpace(@Model.CustomPicturePath))
         {
-          <input id="chkSubscribed" type="checkbox" checked="checked" onclick="TripSubscribe('@Model.Id','@User.GetUserId()');" />
+            <img src="~/images/@Model.CustomPicturePath" alt="Trip Image" class="trip_image">
         }
         else
         {
-          <input id="chkSubscribed" type="checkbox" onclick="TripSubscribe('@Model.Id','@User.GetUserId()');" />
+            <img src="~/images/nullimage.png" alt="Trip Image" class="trip_image">
         }
-      </dd>
-    }
-    @if (Model.CreateUserId == User.GetUserId() && Model.SubscribedUsers.Count > 0)
+
+    </div>
+    <div style="width: 50%; float:right">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.CreateDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TripStartDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TripStartDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DepartureCity)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DepartureCity)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.DestinationCity)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DestinationCity)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TripEndDate)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TripEndDate)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.MaxTravellers)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MaxTravellers)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TravelMode)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TravelMode)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Cost)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Cost)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.TripDescription)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.TripDescription)
+            </dd>
+            @if (Model.SubscribedUsers.Count < Model.MaxTravellers && Model.CreateUserId != User.GetUserId())
+            {
+                <dt>
+                    @Html.DisplayNameFor(model => model.Subscribed)
+                </dt>
+                <dd>
+                    @if (Model.Subscribed)
+                    {
+                        <input id="chkSubscribed" type="checkbox" checked="checked" onclick="TripSubscribe('@Model.Id','@User.GetUserId()');" />
+                    }
+                    else
+                    {
+                        <input id="chkSubscribed" type="checkbox" onclick="TripSubscribe('@Model.Id','@User.GetUserId()');" />
+                    }
+                </dd>
+            }
+            @if (Model.CreateUserId == User.GetUserId() && Model.SubscribedUsers.Count > 0)
+            {
+                <dt>
+                    Subscribed Users:
+                </dt>
+                <dd>
+                    @foreach (var user in Model.SubscribedUsers)
+                    {
+                        if (user.IsConfirmed)
+                        {
+                            <span>@user.UserName</span><br />
+                        }
+                        else
+                        {
+                            <span>Confirm subscribed user @user.UserName? </span><a href="#" onclick="ConfirmUser('true', '@user.UserId', '@Model.Id');">Yes </a><span>|</span><a href="#" onclick="ConfirmUser('false', '@user.UserId', '@Model.Id');"> No</a><br />
+                            <div id="error" hidden="hidden">
+                                <span>Error</span>
+                            </div>
+                        }
+
+                    }
+                </dd>
+            }
+        </dl>
+    </div>
+    <br style="clear:both;" />
+    <hr />
+    @if (Model.CreateUserId == User.GetUserId() || Model.Confirmed == true)
     {
-      <dt>
-        Subscribed Users:
-      </dt>
-      <dd>
-        @foreach (var user in Model.SubscribedUsers)
-        {
-          if (user.IsConfirmed)
-          {
-            <span>@user.UserName</span><br />
-          }
-          else
-          {
-            <span>Confirm subscribed user @user.UserName? </span><a href="#" onclick="ConfirmUser('true', '@user.UserId', '@Model.Id');">Yes </a><span>|</span><a href="#" onclick="ConfirmUser('false', '@user.UserId', '@Model.Id');"> No</a><br />
-            <div id="error" hidden="hidden">
-              <span>Error</span>
-            </div>
-          }
+        <div id="dvMessages">
+            <h2>Messages</h2>
 
-        }
-      </dd>
+            <dl>
+                @foreach (var message in Model.Messages)
+                {
+                    <dt>@message.UserName | @message.PostTime</dt>
+                    <dd>
+                        @message.Post
+                    </dd>
+                }
+            </dl>
+
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Message" class="control-label"></label>
+            <input asp-for="Message" id="txtMessage" class="form-control" />
+            <span asp-validation-for="Message" class="text-danger"></span>
+            <input type="button" onclick="PostMessage('@User.GetUserId()', '@Model.Id');" value="Post Message" class="btn btn-default" />
+        </div>
+
     }
-  </dl>
-  @if (Model.CreateUserId == User.GetUserId() || Model.Confirmed == true)
-  {
-    <div id="dvMessages">
-      <h2>Messages</h2>
-
-      <dl>
-        @foreach (var message in Model.Messages)
-        {
-          <dt>@message.UserName | @message.PostTime</dt>
-          <dd>
-            @message.Post
-          </dd>
-        }
-      </dl>
-
-    </div>
-
-    <div class="form-group">
-      <label asp-for="Message" class="control-label"></label>
-      <input asp-for="Message" id="txtMessage" class="form-control" />
-      <span asp-validation-for="Message" class="text-danger"></span>
-      <input type="button" onclick="PostMessage('@User.GetUserId()', '@Model.Id');" value="Post Message" class="btn btn-default" />
-    </div>
-
-  }
 
 
 </div>
-<div>
-  <tr>
-    @if (User.GetUserId() == Model.CreateUserId)
-    {
-      <td>
-        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-      </td>
-      <td>
-        <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a> |
-      </td>
-    }
-    <td>
-      <a asp-action="Index">Back to List</a>
-    </td>
-  </tr>
+    <div>
+        <tr>
+            @if (User.GetUserId() == Model.CreateUserId)
+            {
+                <td>
+                    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a> |
+                </td>
+            }
+            <td>
+                <a asp-action="Index">Back to List</a>
+            </td>
+        </tr>
 
-</div>
+    </div>
+   

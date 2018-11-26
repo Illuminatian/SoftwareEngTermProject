@@ -68,12 +68,12 @@ namespace TravelConnect.Controllers
 
             if (search.DestinationCity != null)
             {
-                toReturn = toReturn.Where(x => x.DestinationCity.Contains(search.DestinationCity)).ToList();
+                toReturn = toReturn.Where(x => x.DestinationCity.ToLower().Contains(search.DestinationCity.ToLower())).ToList();
             }
 
             if (search.DepartureCity != null)
             {
-                toReturn = toReturn.Where(x => x.DepartureCity.Contains(search.DepartureCity)).ToList();
+                toReturn = toReturn.Where(x => x.DepartureCity.ToLower().Contains(search.DepartureCity.ToLower())).ToList();
             }
 
             if (search.MaxCost > 0)

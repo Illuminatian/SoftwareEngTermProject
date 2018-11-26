@@ -7,7 +7,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class AcceptSubscription {
+public class Search {
   private WebDriver driver;
   private String baseUrl;
   private boolean acceptNextAlert = true;
@@ -23,23 +23,28 @@ public class AcceptSubscription {
   }
 
   @Test
-  public void testAcceptSubscription() throws Exception {
+  public void testSearchFromOmaha() throws Exception {
     driver.get("http://travelconnect.ddns.net/Trip");
-    driver.findElement(By.linkText("Login")).click();
-    driver.findElement(By.id("Input_Email")).clear();
-    driver.findElement(By.id("Input_Email")).sendKeys("totallyreal@email.com");
-    driver.findElement(By.id("Input_Password")).clear();
-    driver.findElement(By.id("Input_Password")).sendKeys("Password12!@");
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Password'])[1]/following::button[1]")).click();
+    driver.findElement(By.linkText("Search")).click();
+    driver.findElement(By.id("DepartureCity")).click();
+    driver.findElement(By.id("DepartureCity")).clear();
+    driver.findElement(By.id("DepartureCity")).sendKeys("Omaha");
     Thread.sleep(2000);
-    driver.findElement(By.linkText("My Trips")).click();
+    driver.findElement(By.id("DepartureCity")).sendKeys(Keys.ENTER);
     Thread.sleep(2000);
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Subscribed'])[1]/following::img[1]")).click();
+    driver.findElement(By.linkText("Search")).click();
+    driver.findElement(By.id("DestinationCity")).click();
+    driver.findElement(By.id("DestinationCity")).clear();
+    driver.findElement(By.id("DestinationCity")).sendKeys("Las Vegas");
     Thread.sleep(2000);
-    driver.findElement(By.linkText("Yes")).click();
+    driver.findElement(By.id("DepartureCity")).sendKeys(Keys.ENTER);
     Thread.sleep(2000);
-    ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(By.linkText("Back to List")));
-    driver.findElement(By.linkText("Back to List")).click();
+driver.findElement(By.linkText("Search")).click();
+    driver.findElement(By.id("MaxCost")).click();
+    driver.findElement(By.id("MaxCost")).clear();
+    driver.findElement(By.id("MaxCost")).sendKeys("1000.00");
+    Thread.sleep(2000);
+    driver.findElement(By.id("DepartureCity")).sendKeys(Keys.ENTER);
     Thread.sleep(2000);
   }
 

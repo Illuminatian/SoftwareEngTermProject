@@ -58,6 +58,7 @@ public class Register {
     driver.findElement(By.id("Input_ConfirmPassword")).clear();
     driver.findElement(By.id("Input_ConfirmPassword")).sendKeys("3ed#ED");
     Thread.sleep(1000);
+    ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Confirm password'])[1]/following::button[1]")));
     driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Confirm password'])[1]/following::button[1]")).click();
     Thread.sleep(2000);
   }

@@ -6,12 +6,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script type="text/javascript">
-    function GoTo(id) {
-        $.ajax
-    }
-</script>
-
 <h2>Explore Trips</h2>
 
 <head>
@@ -23,7 +17,7 @@
             //User is logged in
             if (User.Identity.IsAuthenticated)
             {
-                <div class="card" onclick="window.location.href='/Trip/Details/@item.Id'">
+                <div class="card" onclick="window.location.href='/Trip/Details/@item.Id'" id="@item.Id">
                     @if (!String.IsNullOrWhiteSpace(@item.CustomPicturePath))
                     {
                         <img src="~/images/@item.CustomPicturePath" alt="Trip Image" class="trip_image">

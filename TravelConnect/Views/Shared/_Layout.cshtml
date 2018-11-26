@@ -24,7 +24,7 @@
             asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
       <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
       <link rel="stylesheet" href="~/css/tripcards.min.css" asp-append-version="true" />
-      <link rel="stylesheet" href="~/css/MyTripTabs.css" asp-append-version="true"/>
+      <link rel="stylesheet" href="~/css/MyTripTabs.css" asp-append-version="true" />
     </environment>
 </head>
 <body>
@@ -49,6 +49,7 @@
                         <li><a asp-area="" asp-controller="Trip" asp-action="Create">Create Trip</a></li>
                         <li><a asp-area="" asp-controller="Trip" asp-action="MyTrips">My Trips</a></li>
                     }
+                    <li><a asp-area="" asp-controller="Trip" asp-action="Search">Search</a></li>
                 </ul>
                 <partial name="_LoginPartial" />
             </div>

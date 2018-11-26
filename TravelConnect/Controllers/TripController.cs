@@ -58,18 +58,22 @@ namespace TravelConnect.Controllers
                       + Path.GetExtension(fileName);
         }
 
-        public async Task<IActionResult> Search(SearchModel search)
-        {
-            var toReturn = await _context.TripModel.ToListAsync();
+        // GET: Search
+        public IActionResult Search() => View();
 
-            if(search.DestinationCity != null)
+
+        public async Task<IActionResult> SearchTrips(SearchModel search)
+        {
+            List<TripModel> toReturn = await _context.TripModel.ToListAsync();
+
+            if (search.DestinationCity != null)
             {
-                toReturn = toReturn.Where(x => x.DestinationCity == search.DestinationCity).ToList();
+                toReturn = toReturn.Where(x => x.DestinationCity.Contains(search.DestinationCity)).ToList();
             }
 
-            if(search.DepartureCity != null)
+            if (search.DepartureCity != null)
             {
-                toReturn = toReturn.Where(x => x.DepartureCity == search.DepartureCity).ToList();
+                toReturn = toReturn.Where(x => x.DepartureCity.Contains(search.DepartureCity)).ToList();
             }
 
             if (search.MaxCost > 0)
@@ -77,7 +81,7 @@ namespace TravelConnect.Controllers
                 toReturn = toReturn.Where(x => x.Cost <= search.MaxCost).ToList();
             }
 
-            if (search.DepartureDate != null)
+            if (search.DepartureDate != DateTime.MinValue)
             {
                 toReturn = toReturn.Where(x => x.TripStartDate == search.DepartureDate).ToList();
             }
@@ -89,6 +93,7 @@ namespace TravelConnect.Controllers
 
             return View("Index", toReturn);
         }
+
 
         // GET: Trip
         public async Task<IActionResult> Index()
